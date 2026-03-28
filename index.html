@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="税込価格と割引計算がすぐわかる！シンプルで使いやすい電卓アプリ">
+    <title>税込電卓 - 税込価格と割引計算がすぐわかる電卓アプリ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'Yu Gothic', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9em;
+        }
+
+        main {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        .feature p {
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .download-section {
+            text-align: center;
+            margin: 50px 0;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .download-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .how-to-use {
+            margin: 40px 0;
+        }
+
+        .how-to-use h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+            color: #667eea;
+        }
+
+        .step-content p {
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: white;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: underline;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .tagline {
+                font-size: 1em;
+            }
+
+            main {
+                padding: 30px 20px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📱 税込電卓</h1>
+            <p class="tagline">税込価格と割引計算がすぐわかる！</p>
+            <div>
+                <span class="badge">🆓 無料</span>
+                <span class="badge">📊 シンプル</span>
+                <span class="badge">⚡ 高速</span>
+            </div>
+        </header>
+
+        <main>
+            <section class="intro">
+                <h2 style="text-align: center; font-size: 1.8em; margin-bottom: 20px; color: #333;">
+                    イコールボタン不要！<br>入力するだけで税込価格が一瞬でわかる
+                </h2>
+                <p style="text-align: center; font-size: 1.1em; color: #666; line-height: 1.8;">
+                    「税込電卓」は、日常の計算をもっとシンプルにする電卓アプリです。<br>
+                    数値を入力すると即時計算＆税込価格を表示。<br>
+                    消費税8％と10％の切り替えもワンタップで可能です。
+                </p>
+            </section>
+
+            <section class="features">
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>即時計算</h3>
+                    <p>イコールボタンを押す必要なし！数字を入力するだけで税込価格が即座に表示されます</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔄</div>
+                    <h3>税率切り替え</h3>
+                    <p>消費税8％／10％をワンタップで簡単切り替え。軽減税率にも対応</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💰</div>
+                    <h3>割引計算</h3>
+                    <p>セール品の割引後価格も即座に確認。お買い得商品を賢く見極められます</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">✏️</div>
+                    <h3>簡単修正</h3>
+                    <p>1文字ずつ削除できる修正機能。打ち間違えても安心</p>
+                </div>
+            </section>
+
+            <section class="how-to-use">
+                <h2>使い方</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>数字を入力</h3>
+                            <p>商品の価格を入力するだけ。イコールボタンは不要です</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>税込価格を確認</h3>
+                            <p>入力と同時に税込価格が自動表示されます</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>税率を切り替え</h3>
+                            <p>8％と10％をタップで簡単切り替え。必要に応じて割引計算も可能</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="download-section">
+                <h2>今すぐダウンロード</h2>
+                <p style="margin-bottom: 20px;">無料でご利用いただけます</p>
+                <a href="#" class="download-btn" id="playStoreBtn">
+                    Google Play で手に入れよう
+                </a>
+                <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.9;">
+                    🎯 こんな場面で活躍<br>
+                    スーパーでの買い物 / セール品の価格確認 / レシート確認 / 日々の計算
+                </p>
+            </section>
+
+            <section style="margin-top: 40px; padding: 30px; background: #f8f9fa; border-radius: 10px;">
+                <h2 style="text-align: center; margin-bottom: 20px;">よくある質問</h2>
+                <div style="margin-bottom: 15px;">
+                    <h3 style="color: #667eea; margin-bottom: 5px;">💡 本当に無料ですか？</h3>
+                    <p style="color: #666;">はい、完全無料でご利用いただけます。</p>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <h3 style="color: #667eea; margin-bottom: 5px;">📱 オフラインでも使えますか？</h3>
+                    <p style="color: #666;">はい、インターネット接続なしで使用できます。</p>
+                </div>
+                <div>
+                    <h3 style="color: #667eea; margin-bottom: 5px;">🔒 個人情報は収集されますか？</h3>
+                    <p style="color: #666;">いいえ、個人情報は一切収集しません。すべての計算はデバイス内で完結します。</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 税込電卓. All rights reserved.</p>
+            <p>
+                <a href="privacy.html">プライバシーポリシー</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('playStoreBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'https://play.google.com/store/apps/details?id=com.wizard.calculator_tax';
+        });
+    </script>
+</body>
+</html>
